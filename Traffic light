@@ -1,0 +1,57 @@
+import time
+
+# TrafficLight class
+class TrafficLight:
+    def __init__(self, green_duration, yellow_duration, red_duration):
+        self.green_duration = green_duration
+        self.yellow_duration = yellow_duration
+        self.red_duration = red_duration
+        self.current_state = "GREEN"
+        self.current_duration = self.green_duration
+
+    def change_state(self, new_state, duration):
+        self.current_state = new_state
+        self.current_duration = duration
+        print("Traffic light changed to", self.current_state)
+
+    def run(self):
+        while True:
+            print("Traffic light is", self.current_state)
+            time.sleep(self.current_duration)
+
+            if self.current_state == "GREEN":
+                self.change_state("YELLOW", self.yellow_duration)
+            elif self.current_state == "YELLOW":
+                self.change_state("RED", self.red_duration)
+            elif self.current_state == "RED":
+                self.change_state("GREEN", self.green_duration)
+
+# TrafficDensity class
+class TrafficDensity:
+    def __init__(self, low_threshold, high_threshold):
+        self.low_threshold = low_threshold
+        self.high_threshold = high_threshold
+
+    def get_density(self):
+        # In a real scenario, this method could calculate the actual traffic density using sensors or other data sources
+        # For simplicity, we'll use random values between 0 and 1 as a placeholder
+        density = random.random()
+        return density
+
+# Main program
+if __name__ == "__main__":
+    # Traffic density thresholds
+    LOW_THRESHOLD = 0.4
+    HIGH_THRESHOLD = 0.8
+
+    # Traffic light durations (in seconds)
+    GREEN_DURATION = 10
+    YELLOW_DURATION = 3
+    RED_DURATION = 8
+
+    # Create instances of TrafficLight and TrafficDensity
+    traffic_light = TrafficLight(GREEN_DURATION, YELLOW_DURATION, RED_DURATION)
+    traffic_density = TrafficDensity(LOW_THRESHOLD, HIGH_THRESHOLD)
+
+    # Start the traffic light system
+    traffic_light.run()￼Enter
